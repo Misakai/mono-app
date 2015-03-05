@@ -12,6 +12,9 @@
 apt-get install -y s3cmd
 cp .s3cfg ~/.s3cfg
 
+# App-specific, we need libgdiplus
+apt-get install -y libgdiplus
+
 # Download the package
 s3cmd get s3://$APP_BUCKET/$APP_FILE
 
