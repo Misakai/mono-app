@@ -22,5 +22,8 @@ s3cmd get s3://$APP_BUCKET/$APP_FILE
 unzip $(find /app -name "*.zip") -d /app
 rm -rf ${APP_FILE}
 
+# Tuning GC
+export MONO_GC_PARAMS="soft-heap-limit=512m,nursery-size=128m,major=marksweep-conc,minor=split"
+
 # Run the application
-mono ${APP_ENTRY}
+mono --aot -O=all ${APP_ENTRY}
