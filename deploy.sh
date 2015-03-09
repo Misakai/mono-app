@@ -22,9 +22,9 @@ s3cmd get s3://$APP_BUCKET/$APP_FILE
 unzip $(find /app -name "*.zip") -d /app
 
 # Tuning GC
-if [ -z "$MONO_GC_PARAMS" ]; then
+#if [ -z "$MONO_GC_PARAMS" ]; then
     #export MONO_GC_PARAMS="soft-heap-limit=256m,nursery-size=64m,major=marksweep-conc,minor=split"
-fi  
+#fi  
 
 # Precompile & run the application
 mono --aot -O=all ${APP_ENTRY}
