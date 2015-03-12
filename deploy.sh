@@ -28,4 +28,4 @@ unzip $(find /app -name "*.zip") -d /app
 
 # Precompile & run the application
 mono --aot -O=all ${APP_ENTRY}
-mono --gc=boehm ${APP_ENTRY} 
+mono --gc=sgen ${APP_ENTRY} 
