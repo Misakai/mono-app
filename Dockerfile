@@ -6,8 +6,8 @@ WORKDIR /app
 ADD . /app
 
 # Make sure we have S3
-RUN apt-get update
-RUN apt-get install -y s3cmd
+RUN apt-get update \
+	&& apt-get install -y s3cmd libgdiplus
 
 # HTTP & HTTPS Ports
 EXPOSE 80
