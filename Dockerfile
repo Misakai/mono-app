@@ -5,6 +5,9 @@ MAINTAINER Roman Atachiants "roman@misakai.com"
 WORKDIR /app
 ADD . /app
 
+# Make sure we have S3
+RUN apt-get install -y s3cmd
+
 # HTTP & HTTPS Ports
 EXPOSE 80
 EXPOSE 443
