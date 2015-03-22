@@ -6,6 +6,7 @@ WORKDIR /app
 ADD . /app
 
 # Make sure we have S3
+RUN apt-get update
 RUN apt-get install -y s3cmd
 
 # HTTP & HTTPS Ports
