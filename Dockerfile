@@ -11,7 +11,7 @@ RUN apt-get update  -qq \
 # Make sure we have S3 & S3FS
 WORKDIR /deploy
 RUN apt-get update -qq \
-	&& apt-get install -y build-essential libmount1 libblkid1 libfuse-dev fuse-utils libcurl4-openssl-dev libxml2-dev mime-support automake libtool wget tar \
+	&& apt-get install -y build-essential libmount1 libblkid1 libfuse-dev fuse-utils libcurl4-openssl-dev libxml2-dev mime-support makedev automake libtool wget tar \
 	&& wget https://github.com/s3fs-fuse/s3fs-fuse/archive/v$S3FS_VERSION.tar.gz -O /usr/src/v$S3FS_VERSION.tar.gz \
 	&& tar xvz -C /usr/src -f /usr/src/v$S3FS_VERSION.tar.gz \
 	&& cd /usr/src/s3fs-fuse-$S3FS_VERSION \
