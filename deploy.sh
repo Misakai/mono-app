@@ -17,10 +17,10 @@ s3cmd get s3://$APP_BUCKET/$APP_FILE
 # Unzip the package
 unzip $(find /app -name "*.zip") -d /app
 
-# Tuning GC
-#if [ -z "$MONO_GC_PARAMS" ]; then
-    #export MONO_GC_PARAMS="soft-heap-limit=256m,nursery-size=64m,major=marksweep-conc,minor=split"
-#fi  
+# Mount the bucket in S3FS (read-write)
+export AWSACCESSKEYID=$AWS_ACCESS_KEY
+export AWSSECRETACCESSKEY=$AWS_SECRET_KEY
+/usr/bin/s3fs -o allow_other -o use_cache=/tmp $APP_BUCKET /data
 
 # Precompile & run the application
 mono --aot -O=all ${APP_ENTRY}
