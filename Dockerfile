@@ -1,4 +1,4 @@
-FROM misakai/mono:3.12.1
+FROM misakai/mono:4.0.1
 MAINTAINER Roman Atachiants "roman@misakai.com"
 
 # S3FS Version
