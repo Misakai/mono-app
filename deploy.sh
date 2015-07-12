@@ -15,12 +15,7 @@ cp .s3cfg ~/.s3cfg
 s3cmd get s3://$APP_BUCKET/$APP_FILE
 
 # Unzip the package
-unzip $(find /app -name "*.zip") --force -d /app
-
-# Mount the bucket in S3FS (read-write)
-export AWSACCESSKEYID=$AWS_ACCESS_KEY
-export AWSSECRETACCESSKEY=$AWS_SECRET_KEY
-/usr/bin/s3fs -o allow_other -o use_cache=/tmp $APP_BUCKET /data
+unzip $(find /app -name "*.zip") -d /app
 
 # Precompile & run the application
 mono --aot -O=all ${APP_ENTRY}
