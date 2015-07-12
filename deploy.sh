@@ -15,7 +15,7 @@ cp .s3cfg ~/.s3cfg
 s3cmd get s3://$APP_BUCKET/$APP_FILE
 
 # Unzip the package
-unzip $(find /app -name "*.zip") -d /app
+unzip $(find /app -name "*.zip") --force -d /app
 
 # Mount the bucket in S3FS (read-write)
 export AWSACCESSKEYID=$AWS_ACCESS_KEY
