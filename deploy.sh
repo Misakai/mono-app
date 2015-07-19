@@ -19,6 +19,13 @@ if [[ -z $APP_ARCHIVE ]]; then
 	APP_ARCHIVE=$(find /app -name "*.zip")
 fi
 
+# Make sure we have certificates we need
+sudo mozroots --import --machine --sync
+sudo certmgr -ssl -m https://go.microsoft.com
+sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
+sudo certmgr -ssl -m https://nuget.org
+sudo certmgr -ssl -m https://slack.com
+
 # Unzip the package and delete the zip file
 unzip -o $APP_ARCHIVE -d /app
 rm $APP_ARCHIVE
