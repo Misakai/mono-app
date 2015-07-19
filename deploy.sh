@@ -11,11 +11,18 @@
 # Move S3 Configuration file
 cp .s3cfg ~/.s3cfg
 
+# Make sure our application folder is empty
+if [[ -d /app ]]; then
+	rm -rf /app
+	mkdir /app
+	cd /app
+fi
+
 # Download the package
 s3cmd get s3://$APP_BUCKET/$APP_FILE
 
 # Unzip the package
-unzip $(find /app -name "*.zip") -d /app
+unzip -o $(find /app -name "*.zip") -d /app
 
 # Precompile & run the application
 mono --aot -O=all ${APP_ENTRY}
