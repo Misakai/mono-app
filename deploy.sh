@@ -31,7 +31,7 @@ unzip -qq -o $APP_ARCHIVE -d /app
 rm $APP_ARCHIVE
 
 # Ahead of time compilation
-if [[ -z $MONO_ENABLE_AOT ]]; then
+if [[ $MONO_ENABLE_AOT ]]; then
 	mono --aot -O=all ${APP_ENTRY}
 fi
 
