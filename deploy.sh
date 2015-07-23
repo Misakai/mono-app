@@ -30,6 +30,11 @@ sudo certmgr -ssl -m https://slack.com
 unzip -o $APP_ARCHIVE -d /app
 rm $APP_ARCHIVE
 
-# Precompile & run the application
-mono --aot -O=all ${APP_ENTRY}
+# Ahead of time compilation
+if [[ -z $MONO_ENABLE_AOT ]]; then
+	mono --aot -O=all ${APP_ENTRY}
+fi
+
+
+# Run the application
 mono --gc=sgen ${APP_ENTRY} 
