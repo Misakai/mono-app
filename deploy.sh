@@ -27,7 +27,7 @@ sudo certmgr -ssl -m https://nuget.org
 sudo certmgr -ssl -m https://slack.com
 
 # Unzip the package and delete the zip file
-unzip -o $APP_ARCHIVE -d /app
+unzip -qq -o $APP_ARCHIVE -d /app
 rm $APP_ARCHIVE
 
 # Ahead of time compilation
