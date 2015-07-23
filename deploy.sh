@@ -12,7 +12,7 @@
 cp .s3cfg ~/.s3cfg
 
 # Download the package
-s3cmd get s3://$APP_BUCKET/$APP_FILE
+s3cmd --quiet get s3://$APP_BUCKET/$APP_FILE
 
 # Get the application archive
 if [[ -z $APP_ARCHIVE ]]; then
