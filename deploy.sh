@@ -12,7 +12,7 @@
 cp .s3cfg ~/.s3cfg
 
 # Download the package
-s3cmd -q get s3://$APP_BUCKET/$APP_FILE
+s3cmd get s3://$APP_BUCKET/$APP_FILE
 
 # Get the application archive
 if [[ -z $APP_ARCHIVE ]]; then
@@ -21,10 +21,6 @@ fi
 
 # Make sure we have certificates we need
 mozroots --import --machine --sync
-certmgr -ssl -m https://go.microsoft.com
-certmgr -ssl -m https://nugetgallery.blob.core.windows.net
-certmgr -ssl -m https://nuget.org
-certmgr -ssl -m https://slack.com
 
 # Unzip the package and delete the zip file
 unzip -qq -o $APP_ARCHIVE -d /app
