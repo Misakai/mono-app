@@ -10,7 +10,7 @@ WORKDIR /app
 ADD . /app
 
 # HTTP & HTTPS Ports
-EXPOSE 80
-EXPOSE 443
+# EXPOSE 80
+# EXPOSE 443
 
 CMD ["/bin/bash", "/app/deploy.sh"]
