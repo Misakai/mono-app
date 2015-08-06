@@ -8,6 +8,8 @@
 # AWS_ACCESS_KEY: The access key to use for S3
 # AWS_SECRET_KEY: The secret key to use for S3
 
+# More on MONO, including environment options: http://mono.wikia.com/wiki/Man_mono
+
 # Move S3 Configuration file
 cp .s3cfg ~/.s3cfg
 
@@ -31,6 +33,10 @@ if [[ $MONO_ENABLE_AOT ]]; then
 	mono --aot -O=all ${APP_ENTRY}
 fi
 
+# Set maximum threads per CPU 
+if [[ -z $MONO_THREADS_PER_CPU ]]; then
+	MONO_THREADS_PER_CPU=100
+fi
 
 # Run the application
-mono --gc=sgen ${APP_ENTRY} 
+mono --server --gc=sgen ${APP_ENTRY} 
