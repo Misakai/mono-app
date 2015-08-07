@@ -28,9 +28,14 @@ mozroots --import --machine --sync
 unzip -qq -o $APP_ARCHIVE -d /app
 rm $APP_ARCHIVE
 
-# Ahead of time compilation
+# Optionally enable ahead-of-time compilation
 if [[ $MONO_ENABLE_AOT ]]; then
 	mono --aot -O=all ${APP_ENTRY}
+fi
+
+# Use specific garbage collector
+if [[ -z  $MONO_USE_GC ]]; then
+	MONO_USE_GC=sgen
 fi
 
 # Set maximum threads per CPU 
@@ -39,4 +44,4 @@ if [[ -z $MONO_THREADS_PER_CPU ]]; then
 fi
 
 # Run the application
-mono --server --gc=sgen ${APP_ENTRY} 
+mono --server --gc=$MONO_USE_GC ${APP_ENTRY} 
