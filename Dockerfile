@@ -9,7 +9,7 @@ RUN apt-get update -qq \
 ENV V_LIBSODIUM=libsodium-1.0.3
 ENV V_ZEROMQ=zeromq-4.1.2
 ENV SETUP_TOOLS="autoconf automake build-essential pkg-config"
-RUN apt-get update -qq \
+RUN apt-get update -qq && apt-get install -y $SETUP_TOOLS \
 	&& mkdir /tmp/zmq \
 	&& cd /tmp/zmq \
 	&& wget https://download.libsodium.org/libsodium/releases/${V_LIBSODIUM}.tar.gz \
