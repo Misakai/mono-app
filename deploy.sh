@@ -21,29 +21,6 @@ if [[ -z $APP_ARCHIVE ]]; then
 	APP_ARCHIVE=$(find /app -name "*.zip")
 fi
 
-# If requested, compile ZeroMQ
-: ${ENABLE_ZMQ=0}
-if [[ -z $ZMQ_PATH ]] && [[ "${ENABLE_ZMQ}" ]]; then
-	ZMQ_LIBSODIUM=libsodium-1.0.3
-	ZMQ_ZEROMQ=zeromq-4.1.2
-	ZMQ_SETUP="autoconf automake build-essential pkg-config"
-	ZMQ_PATH=/app/amd64
-	ZMQ_TEMP=/tmp/zmq
-	
-	apt-get update -qq && apt-get install -y $ZMQ_SETUP
-	mkdir $ZMQ_TEMP && cd $ZMQ_TEMP
-	wget https://download.libsodium.org/libsodium/releases/${ZMQ_LIBSODIUM}.tar.gz
-	tar -xvf ${ZMQ_LIBSODIUM}.tar.gz
-	cd ${ZMQ_LIBSODIUM}
-	./configure && make && make install
-	cd $ZMQ_TEMP
-	wget http://download.zeromq.org/${ZMQ_ZEROMQ}.tar.gz
-	tar -xvf ${ZMQ_ZEROMQ}.tar.gz
-	cd ${ZMQ_ZEROMQ}
-	./configure && make && make install
-	cp $ZMQ_TEMP/lib/* $ZMQ_PATH 
-fi
-
 # Make sure we have certificates we need
 mozroots --import --machine --sync
 
