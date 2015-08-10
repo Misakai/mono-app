@@ -22,7 +22,7 @@ if [[ -z $APP_ARCHIVE ]]; then
 fi
 
 # If requested, compile ZeroMQ
-if [[ -z $ZMQ_PATH && $ENABLE_ZMQ]]; then
+if [[ -z $ZMQ_PATH ]] && [[ $ENABLE_ZMQ]]; then
 	ZMQ_LIBSODIUM=libsodium-1.0.3
 	ZMQ_ZEROMQ=zeromq-4.1.2
 	ZMQ_SETUP="autoconf automake build-essential pkg-config"
