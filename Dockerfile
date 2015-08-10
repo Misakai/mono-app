@@ -21,8 +21,8 @@ RUN apt-get update -qq && apt-get install -y $SETUP_TOOLS \
 	&& cd /tmp/zmq \
 	&& wget http://download.zeromq.org/${V_ZEROMQ}.tar.gz \
 	&& tar -xvf ${V_ZEROMQ}.tar.gz \
+	&& cd ${V_ZEROMQ} \
 	&& ./configure \
-	&& cd ${V_LIBSODIUM} \
 	&& make \
 	&& make install \
 	&& apt-get remove -y --purge $SETUP_TOOLS \
