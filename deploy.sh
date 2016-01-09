@@ -10,11 +10,17 @@
 
 # More on MONO, including environment options: http://mono.wikia.com/wiki/Man_mono
 
-# Move S3 Configuration file
-cp .s3cfg ~/.s3cfg
 
-# Download the package
-s3cmd get s3://$APP_BUCKET/$APP_FILE
+if [[ -z $APP_SECRET_KEY]]
+    # Download directly
+    wget http://s3.amazonaws.com/$APP_BUCKET/$APP_FILE
+else
+    # Move S3 Configuration file
+    cp .s3cfg ~/.s3cfg
+
+    # Download the package
+    s3cmd get s3://$APP_BUCKET/$APP_FILE
+fi
 
 # Get the application archive
 if [[ -z $APP_ARCHIVE ]]; then
