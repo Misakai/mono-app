@@ -11,7 +11,7 @@
 # More on MONO, including environment options: http://mono.wikia.com/wiki/Man_mono
 
 
-if [[ -z $APP_SECRET_KEY ]]; then
+if [[ -z $AWS_SECRET_KEY ]]; then
     # Download directly
     wget http://s3.amazonaws.com/$APP_BUCKET/$APP_FILE
 else
