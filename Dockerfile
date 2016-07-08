@@ -1,4 +1,4 @@
-FROM misakai/mono:4.2.1
+FROM misakai/mono:4.4.0
 MAINTAINER Roman Atachiants "roman@misakai.com"
 
 # Make sure we have S3 & additional libraries
